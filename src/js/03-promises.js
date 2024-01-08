@@ -27,8 +27,7 @@ function createPromise(position, delay) {
   return promise;
 }
 
-//Create promises on form submit
-formElement.addEventListener('submit', event => {
+function handleSubmit(event) {
   //Prevent page reloading
   event.preventDefault();
 
@@ -61,4 +60,9 @@ formElement.addEventListener('submit', event => {
     //Increase delay by amount sat up in Step input
     delay += parseInt(stepInput.value);
   }
+}
+
+//Create promises on form submit
+formElement.addEventListener('submit', event => {
+  handleSubmit(event);
 });
