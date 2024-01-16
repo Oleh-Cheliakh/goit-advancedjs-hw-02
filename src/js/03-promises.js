@@ -60,6 +60,7 @@ function handleSubmit(event) {
     //Increase delay by amount sat up in Step input
     delay += parseInt(stepInput.value);
   }
+  formElement.reset();
 }
 
 //Create promises on form submit

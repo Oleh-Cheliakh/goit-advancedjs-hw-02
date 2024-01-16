@@ -3,7 +3,8 @@ import 'flatpickr/dist/flatpickr.min.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
-//Selects button and timer elements
+//Selects button, input and timer elements
+const dataPicker = document.querySelector('#datetime-picker');
 const buttonStart = document.querySelector('button[data-start]');
 const daysNumber = document.querySelector('span[data-days]');
 const hoursNumber = document.querySelector('span[data-hours]');
@@ -45,8 +46,9 @@ const options = {
         position: 'topRight',
       });
     }
-    //Disables button after timer start
+    //Enable button after date was picked
     buttonStart.disabled = false;
+    //Save picked date to variable
     pickedDate = selectedDates[0];
   },
 };
@@ -85,6 +87,8 @@ function showTimeLeft() {
   const leftTime = pickedDate - currentDate;
   //Stops countind if timer reached zero
   if (leftTime < 1) {
+    //Enagle data picker and stops timer after timer reaches 0
+    dataPicker.disabled = false;
     return clearInterval(intervalId);
   }
   const { days, hours, minutes, seconds } = convertMs(leftTime);
@@ -110,6 +114,8 @@ function showTimeLeft() {
 
 //Starts time count down on button start click
 buttonStart.addEventListener('click', event => {
+  //Disable button and data picker after timer start
   buttonStart.disabled = true;
+  dataPicker.disabled = true;
   intervalId = setInterval(showTimeLeft, 1000);
 });

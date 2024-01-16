@@ -36,3 +36,7 @@ img {
 .label {
   font-size: 12px;
 }
+
+#datetime-picker:disabled {
+  cursor: default;
+}
